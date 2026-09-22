@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://junoimportadora.com.br/sitemap.xml

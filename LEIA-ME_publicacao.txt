@@ -1,0 +1,21 @@
+SITE JUNO IMPORTADORA · como publicar na hospedagem (Locaweb)
+
+1. Envie para a raiz do domínio (public_html ou equivalente) o CONTEÚDO desta pasta:
+   - pasta  juno/          → o site fica em https://junoimportadora.com.br/juno/ (mesma URL que o Google já indexou)
+   - .htaccess             → força HTTPS e manda quem acessar https://junoimportadora.com.br/ direto para /juno/ (redirecionamento 301)
+   - robots.txt e sitemap.xml
+   (o .htaccess é um arquivo oculto: no gerenciador de arquivos, ative "mostrar arquivos ocultos")
+
+2. Depois de publicar, no Google Search Console:
+   - envie o sitemap: https://junoimportadora.com.br/sitemap.xml
+   - peça a indexação de https://junoimportadora.com.br/juno/
+
+3. Para completar antes de publicar (não tínhamos esses dados):
+   - CNPJ e endereço no rodapé: procure o comentário <!--CNPJ--> no arquivo juno/index.html
+     e troque por, por exemplo:  <span>CNPJ 00.000.000/0001-00 · Endereço completo</span>
+
+4. Imagens: todas em WebP com JPG de reserva, em dois tamanhos (o celular baixa a versão menor).
+   O site não traz o catálogo em PDF: os botões "Ver catálogo completo" pedem o catálogo pelo WhatsApp.
+
+5. WhatsApp: todos os botões usam o número +55 11 92518-9134 com mensagem pronta por contexto
+   (produto, marca, revenda, tabela de preços, formulário).
