@@ -139,7 +139,7 @@ section { scroll-margin-top: 80px; }
 @media (max-width: 800px) {
   .brand-row, .brand-row:nth-child(even) { grid-template-columns: 1fr; }
   .brand-row:nth-child(even) .brand-copy { order: 0; }
-  .shelf { grid-template-columns: repeat(2, 1fr); }
+  .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* vitrine / destaques */
@@ -156,7 +156,7 @@ section { scroll-margin-top: 80px; }
 .pcard .meta { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
 .pcard .meta svg { width: 9px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.2; }
 .pcard .btn { margin-top: auto; justify-content: center; padding: 12px 16px; font-size: 13px; }
-@media (max-width: 1000px) { .grid-prod { grid-template-columns: repeat(2, 1fr); gap: 14px; } .pcard h3 { font-size: 20px; } .pcard { padding: 12px 12px 16px; } .badge { top: 20px; left: 20px; } }
+@media (max-width: 1000px) { .grid-prod { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .pcard h3 { font-size: 20px; } .pcard { padding: 12px 12px 16px; } .badge { top: 20px; left: 20px; } }
 
 
 /* diferenciais: glow cards */
@@ -208,7 +208,9 @@ section { scroll-margin-top: 80px; }
 .insta-grid a:hover::after { opacity: 1; }
 .insta-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
 .insta-head h2 { font-size: clamp(34px, 4.6vw, 54px); margin-top: 12px; }
-@media (max-width: 800px) { .insta-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .insta-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* telas bem estreitas (320 a 360 px): nada pode passar da largura do celular */
+@media (max-width: 360px) { .pcard .btn { padding: 11px 8px; font-size: 11.5px; letter-spacing: .04em; gap: 6px; text-align: center; } .pcard h3 { font-size: 18px; overflow-wrap: anywhere; } .brand { font-size: 24px; letter-spacing: .34em; } .stats { padding: 14px; } }
 
 /* cta final */
 .cta { position: relative; color: #fff; overflow: hidden; background: #2a2018; }
@@ -255,6 +257,11 @@ section { scroll-margin-top: 80px; }
 .will.in { opacity: 1; transform: none; }
 
 .lite .hero .hero-img, .lite .stats { animation: none; }
+/* ACESSIBILIDADE, NÃO REMOVER: esta regra é intencional.
+   Ela só vale para quem ligou "Reduzir movimento" no sistema (iOS: Ajustes > Acessibilidade > Movimento;
+   Android: Remover animações). Para essas pessoas, animação pode causar enjoo ou tontura, então o site
+   desliga animações e transições e mostra tudo parado e visível. Para todos os outros usuários, desktop
+   ou celular, as animações rodam normalmente. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 
@@ -329,6 +336,11 @@ section { scroll-margin-top: 80px; }
 /* ---------- modo leve / movimento reduzido ---------- */
 .lite .will, .lite .shot, .lite .stage .bottle .shot, .lite .park .pcard .shot { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
 .lite .bottle, .lite .glow::before { animation: none !important; }
+/* ACESSIBILIDADE, NÃO REMOVER: esta regra é intencional.
+   Ela só vale para quem ligou "Reduzir movimento" no sistema (iOS: Ajustes > Acessibilidade > Movimento;
+   Android: Remover animações). Para essas pessoas, animação pode causar enjoo ou tontura, então o site
+   desliga animações e transições e mostra tudo parado e visível. Para todos os outros usuários, desktop
+   ou celular, as animações rodam normalmente. */
 @media (prefers-reduced-motion: reduce) { .will, .shot, .stage .bottle .shot, .park .pcard .shot { opacity: 1 !important; transform: none !important; } .bottle { translate: none !important; } }
 
 /* ---------- celular: os mesmos efeitos do hover, disparados pelo centro da tela e pelo toque ---------- */
@@ -343,7 +355,13 @@ section { scroll-margin-top: 80px; }
 .insta-grid a.focus img { transform: scale(1.06); }
 .insta-grid a.focus::after { opacity: 1; }
 @media (hover: none) {
-  .pcard:active, .tile:active { transform: scale(.98); transition-duration: .15s; }
+  .pcard:active, .tile:active { transform: scale(.975); transition-duration: .12s; }
+  .pcard:active { border-color: var(--gold-2); box-shadow: 0 0 0 3px rgba(200, 168, 107, .35), 0 22px 40px -22px rgba(169, 131, 74, .7); }
+  .tile:active { box-shadow: 0 0 0 3px rgba(200, 168, 107, .4), 0 20px 36px -20px rgba(169, 131, 74, .65); }
+  .pcard:active .ph img, .tile:active img { transform: scale(1.07); filter: brightness(1.06); }
+  .insta-grid a:active img { transform: scale(1.08); }
+  .insta-grid a:active { box-shadow: 0 0 0 3px rgba(200, 168, 107, .45); }
+  .glow:active .glow-card { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(243, 226, 184, .45), 0 30px 60px -28px rgba(217, 164, 90, .75); }
   .btn:active { transform: scale(.97); }
 }
 </style>
